@@ -69,7 +69,7 @@ const App = () => {
     }
   };
 
-  
+
   const handleExcludeDate = (date) => {
     setExcludedDates([...excludedDates, date]);
   };
@@ -121,151 +121,150 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Simple HTML Table</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Action</th>
-            <th>ID</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Month Difference</th>
-            <th>Dates Excluded</th>
-            <th>Number of Days</th>
-            <th>Lead Count</th>
-            <th>Expected DRR</th>
-            <th>Last Updated</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <input
-                type="text"
-                className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
-                value={action}
-                onChange={(e) => setAction(e.target.value)}
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
-                value={id}
-                onChange={(e) => setId(e.target.value)}
-              />
-            </td>
-            <td>
-              <div className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50">
-                <FiCalendar className="date-picker-icon" />
-                <DatePicker
-                  selected={startDate}
-                  onChange={handleStartDateChange}
-                  dateFormat="yyyy-MM-dd"
-                  placeholderText="Start Date"
-                  isClearable
-                  excludeDates={excludedDates}
-                  showTimeSelect={false}
-                />
-              </div>
-            </td>
-            <td>
-              <div className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50">
-                <FiCalendar className="date-picker-icon" />
-                <DatePicker
-                  selected={endDate}
-                  onChange={handleEndDateChange}
-                  dateFormat="yyyy-MM-dd"
-                  placeholderText="End Date"
-                  isClearable
-                  excludeDates={excludedDates}
-                  showTimeSelect={false}
-                />
-              </div>
-            </td>
-            <td>
-              <input
-                type="text"
-                className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
-                value={monthDifference !== null ? monthDifference : ''}
-                readOnly
-              />
-            </td>
-            <td className='datePicker'>
-              <FiCalendar className="date-picker-icon" />
-              <DatePicker
-                selected={null}
-                onChange={handleExcludeDate}
-                excludeDates={excludedDates}
-                dateFormat="yyyy-MM-dd"
-                placeholderText="Exclude Date"
-                isClearable
-                highlightDates={(date) =>
-                  excludedDates.some((excludedDate) =>
-                    date.toLocaleDateString().includes(excludedDate.toLocaleDateString())
-                  )
-                }
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
-                value={numberOfDays !== null ? numberOfDays : ''}
-                readOnly
-              />
-            </td>
-            <td>
-              <input
-                type="number"
-                className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
-                value={numberOfLeads}
-                onChange={(e) => {
-                  setNumberOfLeads(e.target.value);
-                  calculateExpectedLeadCount(e.target.value, numberOfDays); // Update the expected lead count
-                }}
-              />
-            </td>
-            <td>
-              {expectedLeadCount !== null ? (
+    <div className="mx-auto p-2">
+      <h1 className="text-2xl font-bold mb-4">Simple Assignment</h1>
+        <table className="w-full md:w-auto">
+          <thead>
+            <tr className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-10">
+              <th>Action</th>
+              <th>ID</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Month Difference</th>
+              <th>Dates Excluded</th>
+              <th>Number of Days</th>
+              <th>Lead Count</th>
+              <th>Expected DRR</th>
+              <th>Last Updated</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-10">
+              <td className="md:table-cell">
                 <input
                   type="text"
                   className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
-                  value={expectedLeadCount.toFixed(2)}
+                  value={action}
+                  onChange={(e) => setAction(e.target.value)}
+                />
+              </td>
+              <td className="md:table-cell">
+                <input
+                  type="text"
+                  className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                  value={id}
+                  onChange={(e) => setId(e.target.value)}
+                />
+              </td>
+              <td className="md:table-cell">
+                <div className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50">
+                  <FiCalendar className="date-picker-icon" />
+                  <DatePicker
+                    selected={startDate}
+                    onChange={handleStartDateChange}
+                    dateFormat="yyyy-MM-dd"
+                    placeholderText="Start Date"
+                    isClearable
+                    excludeDates={excludedDates}
+                    showTimeSelect={false}
+                  />
+                </div>
+              </td>
+              <td className="md:table-cell">
+                <div className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50">
+                  <FiCalendar className="date-picker-icon" />
+                  <DatePicker
+                    selected={endDate}
+                    onChange={handleEndDateChange}
+                    dateFormat="yyyy-MM-dd"
+                    placeholderText="End Date"
+                    isClearable
+                    excludeDates={excludedDates}
+                    showTimeSelect={false}
+                  />
+                </div>
+              </td>
+              <td className="md:table-cell">
+                <input
+                  type="text"
+                  className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                  value={monthDifference !== null ? monthDifference : ''}
                   readOnly
                 />
-              ) : (
-                <span>N/A</span>
-              )}
-            </td>
-
-
-            <td>
-              <button
-                onClick={handleSave}
-                className='bg-blue-500 px-5 py-2 rounded-md hover:bg-blue-700 text-white font-bold'
-              >
-                Save
-              </button>
-              <br />
-              <button
-                onClick={handleCancel}
-                className='bg-red-500 px-5 py-2 rounded-md hover-bg-red-700 text-white font-bold mt-2'
-              >
-                Cancel
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              </td>
+              <td className="md:table-cell">
+                <FiCalendar className="date-picker-icon" />
+                <DatePicker
+                  selected={null}
+                  onChange={handleExcludeDate}
+                  excludeDates={excludedDates}
+                  dateFormat="yyyy-MM-dd"
+                  placeholderText="Exclude Date"
+                  isClearable
+                  highlightDates={(date) =>
+                    excludedDates.some((excludedDate) =>
+                      date.toLocaleDateString().includes(excludedDate.toLocaleDateString())
+                    )
+                  }
+                />
+              </td>
+              <td className="md:table-cell">
+                <input
+                  type="text"
+                  className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                  value={numberOfDays !== null ? numberOfDays : ''}
+                  readOnly
+                />
+              </td>
+              <td className="md:table-cell">
+                <input
+                  type="number"
+                  className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                  value={numberOfLeads}
+                  onChange={(e) => {
+                    setNumberOfLeads(e.target.value);
+                    calculateExpectedLeadCount(e.target.value, numberOfDays); // Update the expected lead count
+                  }}
+                />
+              </td>
+              <td className="md:table-cell">
+                {expectedLeadCount !== null ? (
+                  <input
+                    type="text"
+                    className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                    value={expectedLeadCount.toFixed(2)}
+                    readOnly
+                  />
+                ) : (
+                  <span>N/A</span>
+                )}
+              </td>
+              <td className="md:table-cell">
+                <button
+                  onClick={handleSave}
+                  className='block w-full md:w-auto bg-blue-500 px-5 py-2 rounded-md hover:bg-blue-700 text-white font-bold'
+                >
+                  Save
+                </button>
+                <br />
+                <button
+                  onClick={handleCancel}
+                  className='block w-full md:w-auto bg-red-500 px-5 py-2 rounded-md hover-bg-red-700 text-white font-bold mt-2'
+                >
+                  Cancel
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+     
       {isFormSubmitted && (
-        <p>Data submitted successfully. You can reset the form or redirect the user as needed.</p>
+        <p className='font-bold mt-4'>Data submitted successfully. You can reset the form or redirect the user as needed.</p>
       )}
       {/* Display the saved data */}
       <div>
-        <h2>Saved Data</h2>
-        <table>
+        <h2 className='text-2xl font-bold mt-8'>Saved Data</h2>
+        <table className='w-full'>
           <thead>
             <tr>
               <th>Action</th>
@@ -282,7 +281,7 @@ const App = () => {
           </thead>
           <tbody>
             {savedData.map((entry, index) => (
-              <tr key={index}>
+              <tr key={index} className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-10">
                 <td>{entry.action ? entry.action.toLocaleString() : 'N/A'}</td>
                 <td>{entry.id ? entry.id.toLocaleString() : 'N/A'}</td>
                 <td>{entry.startDate ? entry.startDate.toLocaleDateString() : 'N/A'}</td>
@@ -291,14 +290,16 @@ const App = () => {
                 <td>{entry.excludedDates.join(', ')}</td>
                 <td>{entry.numberOfDays}</td>
                 <td>{entry.numberOfLeads}</td>
-                <td>{entry.expectedLeadCount.toFixed(2)*100}</td>
+                <td>{entry.expectedLeadCount.toFixed(2) * 100}</td>
                 <td>{entry.lastUpdated ? entry.lastUpdated.toLocaleString() : 'N/A'}</td>
               </tr>
             ))}
           </tbody>
+
         </table>
       </div>
     </div>
+
   );
 };
 
