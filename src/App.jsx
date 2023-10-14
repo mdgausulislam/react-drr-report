@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { FiCalendar } from 'react-icons/fi';
@@ -70,6 +70,7 @@ const App = () => {
   const handleExcludeDate = (date) => {
     setExcludedDates([...excludedDates, date]);
   };
+
 
   const handleSave = () => {
     // Create a new data entry
@@ -162,6 +163,7 @@ const App = () => {
                   placeholderText="Start Date"
                   isClearable
                   excludeDates={excludedDates}
+                  showTimeSelect={false}
                 />
               </div>
             </td>
@@ -175,6 +177,7 @@ const App = () => {
                   placeholderText="End Date"
                   isClearable
                   excludeDates={excludedDates}
+                  showTimeSelect={false}
                 />
               </div>
             </td>
@@ -197,7 +200,7 @@ const App = () => {
                 isClearable
                 highlightDates={(date) =>
                   excludedDates.some((excludedDate) =>
-                    date.toISOString().includes(excludedDate.toISOString())
+                    date.toLocaleDateString().includes(excludedDate.toLocaleDateString())
                   )
                 }
               />
@@ -217,7 +220,7 @@ const App = () => {
                 value={numberOfLeads}
                 onChange={(e) => {
                   setNumberOfLeads(e.target.value);
-                  calculateExpectedLeadCount(e.target.value, numberOfDays);
+                  calculateExpectedLeadCount(e.target.value, numberOfDays); // Update the expected lead count
                 }}
               />
             </td>
@@ -277,10 +280,10 @@ const App = () => {
           <tbody>
             {savedData.map((entry, index) => (
               <tr key={index}>
-                 <td>{entry. action ? entry. action.toLocaleString() : 'N/A'}</td>
+                <td>{entry.action ? entry.action.toLocaleString() : 'N/A'}</td>
                 <td>{entry.id ? entry.id.toLocaleString() : 'N/A'}</td>
-                <td>{entry.startDate ? entry.startDate.toLocaleString() : 'N/A'}</td>
-                <td>{entry.endDate ? entry.endDate.toLocaleString() : 'N/A'}</td>
+                <td>{entry.startDate ? entry.startDate.toLocaleDateString() : 'N/A'}</td>
+                <td>{entry.endDate ? entry.endDate.toLocaleDateString() : 'N/A'}</td>
                 <td>{entry.monthDifference}</td>
                 <td>{entry.excludedDates.join(', ')}</td>
                 <td>{entry.numberOfDays}</td>
