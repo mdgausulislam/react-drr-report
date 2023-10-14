@@ -61,12 +61,15 @@ const App = () => {
   const calculateExpectedLeadCount = (leads, days) => {
     if (leads > 0 && days > 0) {
       const expectedCount = leads / days;
+      console.log('Expected Count:', expectedCount); // Log the expected count
       setExpectedLeadCount(expectedCount);
     } else {
+      console.log('Expected Count: N/A'); // Log the "N/A" case
       setExpectedLeadCount(null);
     }
   };
 
+  
   const handleExcludeDate = (date) => {
     setExcludedDates([...excludedDates, date]);
   };
@@ -288,7 +291,7 @@ const App = () => {
                 <td>{entry.excludedDates.join(', ')}</td>
                 <td>{entry.numberOfDays}</td>
                 <td>{entry.numberOfLeads}</td>
-                <td>{entry.expectedLeadCount}</td>
+                <td>{entry.expectedLeadCount.toFixed(2)*100}</td>
                 <td>{entry.lastUpdated ? entry.lastUpdated.toLocaleString() : 'N/A'}</td>
               </tr>
             ))}
