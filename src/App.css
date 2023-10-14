@@ -1,22 +1,40 @@
-.table-container {
-  margin: 20px;
-}
 
-/* Table Styles */
-.custom-table {
+table {
   border-collapse: collapse;
   width: 100%;
-  border: 1px solid #ccc;
 }
 
-.custom-table th, .custom-table td {
-  border: 1px solid #ccc;
+th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
   padding: 8px;
-  text-align: center;
 }
 
-/* Optional: Add some styling for headers */
-.custom-table th {
+th {
   background-color: #f2f2f2;
-  font-weight: bold;
 }
+/* }
+.date-picker-wrapper {
+  position: relative;
+} */
+
+/* .date-picker-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #007bff; 
+} */
+
+.date-picker-icon {
+  color: #007bff;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+
+
+
+
