@@ -5,6 +5,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { FiCalendar } from 'react-icons/fi';
 
 const App = () => {
+  const [action, setAction] = useState(''); // State for Action
+  const [id, setId] = useState(''); // State for ID
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [monthDifference, setMonthDifference] = useState(null);
@@ -72,6 +74,8 @@ const App = () => {
   const handleSave = () => {
     // Create a new data entry
     const savedEntry = {
+      action, // Include Action
+      id, // Include ID
       startDate,
       endDate,
       monthDifference,
@@ -86,6 +90,8 @@ const App = () => {
     setSavedData([...savedData, savedEntry]);
 
     // Reset the form and clear the flag indicating form submission
+    setAction('');
+    setId('');
     setStartDate(null);
     setEndDate(null);
     setMonthDifference(null);
@@ -134,12 +140,16 @@ const App = () => {
               <input
                 type="text"
                 className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                value={action}
+                onChange={(e) => setAction(e.target.value)}
               />
             </td>
             <td>
               <input
                 type="text"
                 className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                value={id}
+                onChange={(e) => setId(e.target.value)}
               />
             </td>
             <td>
@@ -224,6 +234,7 @@ const App = () => {
               )}
             </td>
 
+
             <td>
               <button
                 onClick={handleSave}
@@ -251,6 +262,8 @@ const App = () => {
         <table>
           <thead>
             <tr>
+              <th>Action</th>
+              <th>ID</th>
               <th>Start Date</th>
               <th>End Date</th>
               <th>Month Difference</th>
@@ -258,19 +271,22 @@ const App = () => {
               <th>Number of Days</th>
               <th>Lead Count</th>
               <th>Expected DRR</th>
+              <th>Last Update</th>
             </tr>
           </thead>
           <tbody>
             {savedData.map((entry, index) => (
               <tr key={index}>
-                <td>{entry.startDate}</td>
-                <td>{entry.endDate}</td>
+                 <td>{entry. action ? entry. action.toLocaleString() : 'N/A'}</td>
+                <td>{entry.id ? entry.id.toLocaleString() : 'N/A'}</td>
+                <td>{entry.startDate ? entry.startDate.toLocaleString() : 'N/A'}</td>
+                <td>{entry.endDate ? entry.endDate.toLocaleString() : 'N/A'}</td>
                 <td>{entry.monthDifference}</td>
                 <td>{entry.excludedDates.join(', ')}</td>
                 <td>{entry.numberOfDays}</td>
                 <td>{entry.numberOfLeads}</td>
-                <td>{entry.expectedLeadCount.toFixed(2)}</td>
-                <td>{entry.lastUpdated}</td>
+                <td>{entry.expectedLeadCount}</td>
+                <td>{entry.lastUpdated ? entry.lastUpdated.toLocaleString() : 'N/A'}</td>
               </tr>
             ))}
           </tbody>
