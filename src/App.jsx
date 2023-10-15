@@ -121,13 +121,13 @@ const App = () => {
   };
 
   return (
-    <div className="mx-auto p-2">
+    <div>
       <h1 className="text-2xl font-bold mb-4">Simple Assignment</h1>
-        <table className="w-full md:w-auto">
+        <table className='w-full'>
           <thead>
-            <tr className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-10">
-              <th>Action</th>
-              <th>ID</th>
+            <tr className="grid sm:grid-cols-1 md:grid-cols-5 lg:grid-cols-10">
+              <th className='block'>Action</th>
+              <th>ID</th> 
               <th>Start Date</th>
               <th>End Date</th>
               <th>Month Difference</th>
@@ -139,67 +139,68 @@ const App = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-10">
-              <td className="md:table-cell">
+            <tr className="grid sm:grid-cols-1 md:grid-cols-5 lg:grid-cols-10">
+              <td>
                 <input
                   type="text"
-                  className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                  className="block p-2 mt-8 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:w-full md:w-full lg:w-full"
                   value={action}
                   onChange={(e) => setAction(e.target.value)}
                 />
               </td>
-              <td className="md:table-cell">
+              <td>
                 <input
                   type="text"
-                  className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                  className="block p-2 mt-8 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:w-full md:w-full lg:w-full"
                   value={id}
                   onChange={(e) => setId(e.target.value)}
                 />
               </td>
-              <td className="md:table-cell">
-                <div className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50">
+              <td>
+                <div className="block w-full p-2 mt-4 text-gray-900">
                   <FiCalendar className="date-picker-icon" />
-                  <DatePicker
+                  <DatePicker className='border-2 border-gray-300 rounded-md bg-gray-50 sm:w-full md:w-full lg:w-full'
                     selected={startDate}
                     onChange={handleStartDateChange}
                     dateFormat="yyyy-MM-dd"
-                    placeholderText="Start Date"
+                    placeholderText="yyyy-MM-dd"
                     isClearable
                     excludeDates={excludedDates}
                     showTimeSelect={false}
                   />
                 </div>
               </td>
-              <td className="md:table-cell">
-                <div className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50">
+              <td>
+                <div className="block w-full p-2 mt-4 text-gray-900" >
                   <FiCalendar className="date-picker-icon" />
-                  <DatePicker
+                  <DatePicker className='border-2 border-gray-300 rounded-md bg-gray-50 sm:w-full md:w-full lg:w-full'
                     selected={endDate}
                     onChange={handleEndDateChange}
                     dateFormat="yyyy-MM-dd"
-                    placeholderText="End Date"
+                    placeholderText="yyyy-MM-dd"
                     isClearable
                     excludeDates={excludedDates}
                     showTimeSelect={false}
                   />
                 </div>
               </td>
-              <td className="md:table-cell">
+              <td>
                 <input
                   type="text"
-                  className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                  className="block p-2 mt-8 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:w-full md:w-full lg:w-full"
                   value={monthDifference !== null ? monthDifference : ''}
                   readOnly
                 />
               </td>
-              <td className="md:table-cell">
+              <td>
+              <div className="block w-full p-2 mt-4 text-gray-900">
                 <FiCalendar className="date-picker-icon" />
-                <DatePicker
+                <DatePicker className='border-2 border-gray-300 rounded-md bg-gray-50 sm:w-full md:w-full lg:w-full'
                   selected={null}
                   onChange={handleExcludeDate}
                   excludeDates={excludedDates}
                   dateFormat="yyyy-MM-dd"
-                  placeholderText="Exclude Date"
+                  placeholderText="yyyy-MM-dd"
                   isClearable
                   highlightDates={(date) =>
                     excludedDates.some((excludedDate) =>
@@ -207,19 +208,20 @@ const App = () => {
                     )
                   }
                 />
+               </div>
               </td>
-              <td className="md:table-cell">
+              <td>
                 <input
                   type="text"
-                  className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                  className="block p-2 mt-8 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:w-full md:w-full lg:w-full"
                   value={numberOfDays !== null ? numberOfDays : ''}
                   readOnly
                 />
               </td>
-              <td className="md:table-cell">
+              <td>
                 <input
                   type="number"
-                  className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                  className="block p-2 mt-8 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:w-full md:w-full lg:w-full"
                   value={numberOfLeads}
                   onChange={(e) => {
                     setNumberOfLeads(e.target.value);
@@ -227,11 +229,11 @@ const App = () => {
                   }}
                 />
               </td>
-              <td className="md:table-cell">
+              <td>
                 {expectedLeadCount !== null ? (
                   <input
                     type="text"
-                    className="block w-20 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                    className="block p-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:w-full md:w-full lg:w-full"
                     value={expectedLeadCount.toFixed(2)}
                     readOnly
                   />
@@ -239,17 +241,17 @@ const App = () => {
                   <span>N/A</span>
                 )}
               </td>
-              <td className="md:table-cell">
+              <td>
                 <button
                   onClick={handleSave}
-                  className='block w-full md:w-auto bg-blue-500 px-5 py-2 rounded-md hover:bg-blue-700 text-white font-bold'
+                  className='block sm:w-full md:w-full lg:w-full bg-blue-500 px-5 py-2 rounded-md hover:bg-blue-700 text-white font-bold'
                 >
                   Save
                 </button>
                 <br />
                 <button
                   onClick={handleCancel}
-                  className='block w-full md:w-auto bg-red-500 px-5 py-2 rounded-md hover-bg-red-700 text-white font-bold mt-2'
+                  className='block sm:w-full md:w-full lg:w-full bg-red-500 px-5 py-2 rounded-md hover-bg-red-700 text-white font-bold mt-2'
                 >
                   Cancel
                 </button>
@@ -266,7 +268,7 @@ const App = () => {
         <h2 className='text-2xl font-bold mt-8'>Saved Data</h2>
         <table className='w-full'>
           <thead>
-            <tr>
+            <tr className="grid sm:grid-cols-1 md:grid-cols-5 lg:grid-cols-10">
               <th>Action</th>
               <th>ID</th>
               <th>Start Date</th>
@@ -281,7 +283,7 @@ const App = () => {
           </thead>
           <tbody>
             {savedData.map((entry, index) => (
-              <tr key={index} className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-10">
+              <tr key={index} className="grid sm:grid-cols-1 md:grid-cols-5 lg:grid-cols-10">
                 <td>{entry.action ? entry.action.toLocaleString() : 'N/A'}</td>
                 <td>{entry.id ? entry.id.toLocaleString() : 'N/A'}</td>
                 <td>{entry.startDate ? entry.startDate.toLocaleDateString() : 'N/A'}</td>
